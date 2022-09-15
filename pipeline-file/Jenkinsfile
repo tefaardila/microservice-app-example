@@ -13,11 +13,11 @@ pipeline {
 
             }
         }
-        // stage('FailPortTest') { 
-        //     steps {
-        //         sh 'sudo lsof -i:8086'
+        stage('FailPortTest') { 
+            steps {
+                sh 'sudo lsof -i:8086'
                 
-        //     }
-        // }
+            }
+        }
     }
 }
