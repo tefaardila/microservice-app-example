@@ -13,11 +13,11 @@ pipeline {
 
             }
         }
-        stage('PortTest') { 
+        /*stage('PortTest') { 
             steps {
                 sh 'sudo lsof -i:8086'
                 
             }
-        }
+        }*/
     }
 }
