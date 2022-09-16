@@ -21,10 +21,9 @@ pipeline {
         // }
         stage('Artifact') { 
             steps {
-                dir('home/vagrant/microservice-app-example'){
-                    archiveArtifacts artifacts: '**'
-                }
-                
+
+                archiveArtifacts artifacts: '/home/vagrant/microservice-app-example/**'
+    
             }
         }
     }
