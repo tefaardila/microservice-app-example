@@ -21,7 +21,7 @@ pipeline {
         // }
         stage('Artifact') { 
             steps {
-                archiveArtifacts artifacts: '**'
+                archiveArtifacts artifacts: 'microservice-app-example'
                 
             }
         }
