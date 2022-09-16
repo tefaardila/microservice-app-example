@@ -13,9 +13,15 @@ pipeline {
 
             }
         }
-        stage('FailPortTest') { 
+        // stage('FailPortTest') { 
+        //     steps {
+        //         sh 'sudo lsof -i:8086'
+                
+        //     }
+        // }
+        stage('Artifact') { 
             steps {
-                sh 'sudo lsof -i:8086'
+                archiveArtifacts artifacts: '**'
                 
             }
         }
