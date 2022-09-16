@@ -24,9 +24,9 @@ pipeline {
                 archiveArtifacts artifacts: '**'
             }
         }
-        stage('Create tar.gz file'){
-            sh 'tar -cvzf pipeline-2.tar.gz /var/lib/jenkins/workspace/pipeline-2/'
-        }
+        // stage('Create tar.gz file'){
+        //     sh 'tar -cvzf pipeline-2.tar.gz /var/lib/jenkins/workspace/pipeline-2/'
+        // }
         stage('Upload-Artifact'){
             steps {
                 nexusArtifactUploader artifacts: [[
