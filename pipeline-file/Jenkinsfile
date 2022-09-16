@@ -39,7 +39,6 @@ pipeline {
                 repository: 'artifact-with-maven', 
                 version: '1.0.0'
             }
-            
         }
     }
 }
