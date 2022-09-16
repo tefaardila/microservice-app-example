@@ -29,7 +29,7 @@ pipeline {
                 nexusArtifactUploader artifacts: [[
                     artifactId: 'ArtifactPipelin1', 
                     classifier: '', 
-                    file: 'target/**', 
+                    file: 'target/arch-img', 
                     type: 'raw']], 
                 credentialsId: '044f2262-242c-4c4c-89e0-668160443363', 
                 groupId: 'MyPipelineArtifact', 
