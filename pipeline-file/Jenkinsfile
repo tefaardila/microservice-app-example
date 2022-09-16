@@ -27,12 +27,12 @@ pipeline {
         stage('Upload-Artifact'){
             steps {
                 nexusArtifactUploader artifacts: [[
-                    artifactId: 'PipelineNexus', 
+                    artifactId: 'ArtifactPipelin1', 
                     classifier: '', 
-                    file: 'myArtifact/microservices.raw', 
-                    type: 'war']], 
+                    file: 'target/**', 
+                    type: 'raw']], 
                 credentialsId: '044f2262-242c-4c4c-89e0-668160443363', 
-                groupId: 'PipelineNexus', 
+                groupId: 'MyPipelineArtifact', 
                 nexusUrl: '192.168.33.12:8081', 
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
