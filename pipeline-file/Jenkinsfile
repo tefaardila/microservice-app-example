@@ -24,13 +24,16 @@ pipeline {
                 archiveArtifacts artifacts: '**'
             }
         }
+        stagg('Create tar.gz file'){
+            sh 'tar -cvzf pipeline-2.tar.gz /var/lib/jenkins/workspace/pipeline-2/'
+        }
         stage('Upload-Artifact'){
             steps {
                 nexusArtifactUploader artifacts: [[
                     artifactId: 'ArtifactPipelin1', 
                     classifier: '', 
-                    file: '/var/lib/jenkins/workspace/pipeline-2/arch-img/Microservices.png', 
-                    type: 'raw']], 
+                    file: '/home/vagrant/pipeline-2.tar.gz', 
+                    type: 'tar.gz']], 
                 credentialsId: '044f2262-242c-4c4c-89e0-668160443363', 
                 groupId: 'MyPipelineArtifact', 
                 nexusUrl: '192.168.33.12:8081', 
