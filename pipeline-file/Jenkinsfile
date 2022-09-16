@@ -33,7 +33,7 @@ pipeline {
                     type: 'raw']], 
                 credentialsId: '044f2262-242c-4c4c-89e0-668160443363', 
                 groupId: 'MyPipelineArtifact', 
-                nexusUrl: 'https://f6ec-191-102-199-176.ngrok.io', 
+                nexusUrl: 'https://f6ec-191-102-199-176.ngrok.io/repository/artifact-with-maven/', 
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
                 repository: 'artifact-with-maven', 
