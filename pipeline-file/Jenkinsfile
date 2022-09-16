@@ -21,10 +21,25 @@ pipeline {
         // }
         stage('Artifact') { 
             steps {
-
                 archiveArtifacts artifacts: '**'
-    
             }
+        }
+        stage('Upload-Artifact'){
+            steps {
+                nexusArtifactUploader artifacts: [[
+                    artifactId: 'PipelineNexus', 
+                    classifier: '', 
+                    file: 'myArtifact/microservices.raw', 
+                    type: 'war']], 
+                credentialsId: '044f2262-242c-4c4c-89e0-668160443363', 
+                groupId: 'PipelineNexus', 
+                nexusUrl: '192.168.33.12:8081', 
+                nexusVersion: 'nexus3', 
+                protocol: 'http', 
+                repository: 'artifact-with-maven', 
+                version: '1.0.0'
+            }
+            
         }
     }
 }
