@@ -56,23 +56,24 @@ pipeline {
         }
         stage('Create tar.gz file'){
             steps{
-                sh 'tar -cvzf pipeline-2.tar.gz /var/lib/jenkins/workspace/artifact-jenkins-git'
+                sh 'tar -cvzf pipeline-2.tar.gz /var/lib/jenkins/workspace/pipeline-2'
             }
         }
-        stage('Upload-Artifact-GitHub'){
-            steps {
-                dir('/var/lib/jenkins/workspace/pipeline-2/artifact-jenkins-git'){
-                    sh '''
-                    sudo git add .
-                    sudo git tag -a v1.0.0 -m "Artifact 1.0.0"
-                    sudo git push
-                    '''
-                }
+        // stage('Upload-Artifact-GitHub'){
+        //     steps {
+            
+        //         dir('/var/lib/jenkins/workspace/pipeline-2/artifact-jenkins-git'){
+        //             sh '''
+        //             sudo git add .
+        //             sudo git tag -a v1.0.0 -m "Artifact 1.0.0"
+        //             sudo git push
+        //             '''
+        //         }
                 
-            }
+        //     }
 
 
-        }
+        // }
 
     }
 }
