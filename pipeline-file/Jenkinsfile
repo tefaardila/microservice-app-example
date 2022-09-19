@@ -1,8 +1,6 @@
 pipeline {
     agent any 
-    environment {
-        GITHUB_EMAIL = credentials('Github-email')
-    }
+
     stages {
         stage('PortTest') { 
             steps {
@@ -82,7 +80,9 @@ pipeline {
         stage('Upload-Artifact-GitHub'){
             steps {
                 
-                withCredentials([usernamePassword(credentialsId: 'Github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+                withCredentials([usernamePassword(credentialsId: 'Github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')], 
+                                [string(credentialsId: 'Github-email', variable: 'GITHUB_EMAIL')]){
+                                    
                     dir('/var/lib/jenkins/workspace/artifact-jenkins-git'){
                     sh '''
                     sudo git config --global user.name "${USERNAME}"
