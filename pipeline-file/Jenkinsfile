@@ -87,7 +87,7 @@ pipeline {
                     sudo git config --global credential.helper 'cache --timeout=243600'
                     sudo git add .
                     sudo git commit -m "Uploading new artifact"
-                    sudo git tag -a v1.0.2 -m "Artifact 1.0.2"
+                    sudo git tag -a v1.0.3 -m "Artifact 1.0.3"
                     sudo git push https://${USERNAME}:${PASSWORD}@github.com/tefaardila/artifact-jenkins-git.git')
                     '''
                 }
