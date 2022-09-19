@@ -30,7 +30,7 @@ pipeline {
         //         nexusArtifactUploader artifacts: [[
         //             artifactId: 'ArtifactPipelin1', 
         //             classifier: '', 
-        //             file: '/var/lib/jenkins/workspace/pipeline-2/pipeline-2.tar.gz', 
+        //             file: '/var/lib/jenkins/workspace/pipeline-2.tar.gz', 
         //             type: 'tar.gz']], 
         //         credentialsId: '044f2262-242c-4c4c-89e0-668160443363', 
         //         groupId: 'MyPipelineArtifact', 
@@ -56,7 +56,11 @@ pipeline {
         }
         stage('Create tar.gz file'){
             steps{
-                sh 'tar -cvzf /var/lib/jenkins/workspace/pipeline-2/pipeline-2.tar.gz /var/lib/jenkins/workspace/artifact-jenkins-git'
+                sh ''' 
+                cd /var/lib/jenkins/workspace 
+                sudo tar -zcf /var/lib/jenkins/workspace/artifact-jenkins-git/pipeline-2.tar.gz -c pipeline-2
+
+                '''
             }
         }
         // stage('Upload-Artifact-GitHub'){
