@@ -48,10 +48,12 @@ pipeline {
         // }
         stage('Upload-Artifact-GitHub'){
             steps{
-                if (fileExists('artifact-jenkins-git')) {
-                    echo 'Yes'
+                def exists = fileExists '/var/lib/jenkins/workspace/pipeline-2/artifact-jenkins-git'
+
+                if (exists) {
+                    sh "LINUX SHELL COMMAND"
                 } else {
-                    echo 'No'
+                    println "File doesn't exist"
                 }
                 //sh 
             }
