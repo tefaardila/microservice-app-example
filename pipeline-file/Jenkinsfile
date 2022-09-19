@@ -44,7 +44,7 @@ pipeline {
         stage('Clone github repository'){
             steps{
                 script {
-                    def exists = fileExists '/var/lib/jenkins/workspace/pipeline-2/artifact-jenkins-git'
+                    def exists = fileExists '/var/lib/jenkins/workspace/artifact-jenkins-git'
 
                     if (exists) {
                         println "FOUND"
