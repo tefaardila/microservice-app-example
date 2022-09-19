@@ -48,9 +48,7 @@ pipeline {
         // }
         stage('Upload-Artifact-GitHub'){
             steps{
-                def exists = fileExists 'artifact-jenkins-git'
-
-                if (exists) {
+                if (fileExists('artifact-jenkins-git')) {
                     echo 'Yes'
                 } else {
                     echo 'No'
