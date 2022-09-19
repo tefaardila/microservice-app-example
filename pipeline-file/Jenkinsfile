@@ -54,11 +54,9 @@ pipeline {
                     if (exists) {
                         println "FOUND"
                     } else {
-                        println "File doesn't exist"
+                        sh "sudo git clone https://github.com/tefaardila/artifact-jenkins-git.git"
                     }
-                }
-                sh 'testing if file exists'
-                
+                }                
                 //sh 
             }
         }
