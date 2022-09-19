@@ -63,9 +63,9 @@ pipeline {
             steps {
                 dir('/var/lib/jenkins/workspace/pipeline-2/artifact-jenkins-git'){
                     sh '''
-                    git add .
-                    git tag -a v1.0.0 -m "Artifact 1.0.0"
-                    git push
+                    sudo git add .
+                    sudo git tag -a v1.0.0 -m "Artifact 1.0.0"
+                    sudo git push
                     '''
                 }
                 
