@@ -78,16 +78,20 @@ pipeline {
         }
         stage('Upload-Artifact-GitHub'){
             steps {
-            
-                dir('/var/lib/jenkins/workspace/artifact-jenkins-git'){
+                
+                withCredentials([usernamePassword(credentialsId: 'Github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+                    dir('/var/lib/jenkins/workspace/artifact-jenkins-git'){
                     sh '''
                     sudo git config --global credential.helper 'cache --timeout=243600'
                     sudo git add .
                     sudo git commit -m "Uploading new artifact"
                     sudo git tag -a v1.0.1 -m "Artifact 1.0.1"
-                    sudo git push
+                    sudo git push https://${USERNAME}:${PASSWORD}@github.com/tefaardila/artifact-jenkins-git.git')
                     '''
                 }
+                }
+                
+                
                 
             }
 
