@@ -30,20 +30,32 @@ pipeline {
             }
             
         }
-        stage('Upload-Artifact'){
-            steps {
-                nexusArtifactUploader artifacts: [[
-                    artifactId: 'ArtifactPipelin1', 
-                    classifier: '', 
-                    file: '/var/lib/jenkins/workspace/pipeline-2/pipeline-2.tar.gz', 
-                    type: 'tar.gz']], 
-                credentialsId: '044f2262-242c-4c4c-89e0-668160443363', 
-                groupId: 'MyPipelineArtifact', 
-                nexusUrl: '192.168.33.12:8081', 
-                nexusVersion: 'nexus3', 
-                protocol: 'http', 
-                repository: 'artifact-with-maven', 
-                version: '1.0.1'
+        // stage('Upload-Artifact-Nexus'){
+        //     steps {
+        //         nexusArtifactUploader artifacts: [[
+        //             artifactId: 'ArtifactPipelin1', 
+        //             classifier: '', 
+        //             file: '/var/lib/jenkins/workspace/pipeline-2/pipeline-2.tar.gz', 
+        //             type: 'tar.gz']], 
+        //         credentialsId: '044f2262-242c-4c4c-89e0-668160443363', 
+        //         groupId: 'MyPipelineArtifact', 
+        //         nexusUrl: '192.168.33.12:8081', 
+        //         nexusVersion: 'nexus3', 
+        //         protocol: 'http', 
+        //         repository: 'artifact-with-maven', 
+        //         version: '1.0.1'
+        //     }
+        // }
+        stage('Upload-Artifact-GitHub'){
+            steps{
+                def exists = fileExists 'artifact-jenkins-git'
+
+                if (exists) {
+                    echo 'Yes'
+                } else {
+                    echo 'No'
+                }
+                //sh 
             }
         }
     }
