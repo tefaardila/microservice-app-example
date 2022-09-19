@@ -60,11 +60,14 @@ pipeline {
             }
         }
         stage('Upload-Artifact-GitHub'){
-            sh '''
-            git add .
-            git tag -a v1.0.0 -m "Artifact 1.0.0"
-            git push
-            '''
+            steps {
+                sh '''
+                git add .
+                git tag -a v1.0.0 -m "Artifact 1.0.0"
+                git push
+                '''
+            }
+
 
         }
 
