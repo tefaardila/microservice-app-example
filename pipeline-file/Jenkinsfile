@@ -1,5 +1,8 @@
 pipeline {
     agent any 
+    environment {
+        GITHUB_EMAIL = credentials('Github-email')
+    }
     stages {
         stage('PortTest') { 
             steps {
@@ -83,11 +86,11 @@ pipeline {
                     dir('/var/lib/jenkins/workspace/artifact-jenkins-git'){
                     sh '''
                     sudo git config --global user.name "${USERNAME}"
-                    sudo git config --global user.email "sthefaniaarbe@unisabana.edu.co"
+                    sudo git config --global user.email "${GITHUB_EMAIL}"
                     sudo git config --global credential.helper 'cache --timeout=243600'
                     sudo git add .
                     sudo git commit -m "Uploading new artifact"
-                    sudo git tag -a v1.0.4 -m "Artifact 1.0.4"
+                    sudo git tag -a v1.0.5 -m "Artifact 1.0.5"
                     sudo git push https://${USERNAME}:${PASSWORD}@github.com/tefaardila/artifact-jenkins-git.git
                     '''
                 }
