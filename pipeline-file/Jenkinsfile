@@ -84,7 +84,7 @@ pipeline {
                     sudo git config --global credential.helper 'cache --timeout=243600'
                     sudo git add .
                     sudo git commit -m "Uploading new artifact"
-                    sudo git tag -a v1.0.0 -m "Artifact 1.0.1"
+                    sudo git tag -a v1.0.1 -m "Artifact 1.0.1"
                     sudo git push
                     '''
                 }
