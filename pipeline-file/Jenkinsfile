@@ -63,21 +63,20 @@ pipeline {
                 '''
             }
         }
-        // stage('Upload-Artifact-GitHub'){
-        //     steps {
+        stage('Upload-Artifact-GitHub'){
+            steps {
             
-        //         dir('/var/lib/jenkins/workspace/artifact-jenkins-git'){
-        //             sh '''
-        //             sudo git add .
-        //             sudo git tag -a v1.0.0 -m "Artifact 1.0.0"
-        //             sudo git push
-        //             '''
-        //         }
+                dir('/var/lib/jenkins/workspace/artifact-jenkins-git'){
+                    sh '''
+                    sudo git add .
+                    sudo git tag -a v1.0.0 -m "Artifact 1.0.0"
+                    sudo git push
+                    '''
+                }
                 
-        //     }
+            }
 
-
-        // }
+        }
 
     }
 }
