@@ -56,11 +56,24 @@ pipeline {
         }
         stage('Create tar.gz file'){
             steps{
-                sh ''' 
-                cd /var/lib/jenkins/workspace 
-                sudo tar -zcf /var/lib/jenkins/workspace/artifact-jenkins-git/pipeline-2.tar.gz -c pipeline-2
+                script{
+                    def exists2 = fileExists '/var/lib/jenkins/workspace/artifact-jenkins-git/pipeline-2.tar.gz'
 
-                '''
+
+                    if (exists2) {
+                        sh '''
+                        sudo rm /var/lib/jenkins/workspace/artifact-jenkins-git/pipeline-2.tar.gz
+                        cd /var/lib/jenkins/workspace 
+                        sudo tar -zcf /var/lib/jenkins/workspace/artifact-jenkins-git/pipeline-2.tar.gz -c pipeline-2
+                        '''
+                    } else {
+                        sh '''
+                        cd /var/lib/jenkins/workspace 
+                        sudo tar -zcf /var/lib/jenkins/workspace/artifact-jenkins-git/pipeline-2.tar.gz -c pipeline-2
+                        '''
+                    }
+
+                }
             }
         }
         stage('Upload-Artifact-GitHub'){
@@ -68,6 +81,7 @@ pipeline {
             
                 dir('/var/lib/jenkins/workspace/artifact-jenkins-git'){
                     sh '''
+                    sudo git config --global credential.helper 'cache --timeout=243600'
                     sudo git add .
                     sudo git commit -m "Uploading new artifact"
                     sudo git tag -a v1.0.0 -m "Artifact 1.0.0"
