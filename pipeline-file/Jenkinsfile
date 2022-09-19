@@ -49,7 +49,7 @@ pipeline {
                     if (exists) {
                         println "FOUND"
                     } else {
-                        sh "cd /var/lib/jenkins/workspace && sudo git clone https://github.com/tefaardila/artifact-jenkins-git.git"
+                        sh "cd /var/lib/jenkins/workspace && sudo git clone git@github.com:tefaardila/artifact-jenkins-git.git"
                     }
                 }                 
             }
