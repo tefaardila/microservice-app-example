@@ -24,12 +24,7 @@ pipeline {
                 archiveArtifacts artifacts: '**'
             }
         }
-        stage('Create tar.gz file'){
-            steps{
-                sh 'tar -cvzf pipeline-2.tar.gz /var/lib/jenkins/workspace/pipeline-2'
-            }
-            
-        }
+        
         // stage('Upload-Artifact-Nexus'){
         //     steps {
         //         nexusArtifactUploader artifacts: [[
@@ -46,7 +41,7 @@ pipeline {
         //         version: '1.0.1'
         //     }
         // }
-        stage('Upload-Artifact-GitHub'){
+        stage('Clone github repository'){
             steps{
                 script {
                     def exists = fileExists '/var/lib/jenkins/workspace/pipeline-2/artifact-jenkins-git'
@@ -56,9 +51,22 @@ pipeline {
                     } else {
                         sh "sudo git clone https://github.com/tefaardila/artifact-jenkins-git.git"
                     }
-                }                
-                //sh 
+                }                 
             }
         }
+        stage('Create tar.gz file'){
+            steps{
+                sh 'tar -cvzf pipeline-2.tar.gz /var/lib/jenkins/workspace/pipeline-2/artifact-jenkins-git'
+            }
+        }
+        stage('Upload-Artifact-GitHub'){
+            sh '''
+            git add .
+            git tag -a v1.0.0 -m "Artifact 1.0.0"
+            git push
+            '''
+
+        }
+
     }
 }
