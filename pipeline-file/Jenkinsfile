@@ -49,14 +49,14 @@ pipeline {
                     if (exists) {
                         println "FOUND"
                     } else {
-                        sh "sudo git clone https://github.com/tefaardila/artifact-jenkins-git.git"
+                        sh "cd /var/lib/jenkins/workspace && sudo git clone https://github.com/tefaardila/artifact-jenkins-git.git"
                     }
                 }                 
             }
         }
         stage('Create tar.gz file'){
             steps{
-                sh 'tar -cvzf pipeline-2.tar.gz /var/lib/jenkins/workspace/pipeline-2/artifact-jenkins-git'
+                sh 'tar -cvzf pipeline-2.tar.gz /var/lib/jenkins/workspace/artifact-jenkins-git'
             }
         }
         stage('Upload-Artifact-GitHub'){
