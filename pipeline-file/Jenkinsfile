@@ -1,6 +1,8 @@
 pipeline {
     agent any 
-
+    environment {
+        AWS_DEFAULT_REGION="us-east-1"
+    }
     stages {
         stage('PortTest') { 
             steps {
@@ -77,35 +79,39 @@ pipeline {
                 }
             }
         }
-        stage('Upload-Artifact-GitHub'){
-            steps {
+        // stage('Upload-Artifact-GitHub'){
+        //     steps {
                 
-                withCredentials([usernamePassword(credentialsId: 'Github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'), 
-                                string(credentialsId: 'Github-email', variable: 'GITHUB_EMAIL')]){
+        //         withCredentials([usernamePassword(credentialsId: 'Github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'), 
+        //                         string(credentialsId: 'Github-email', variable: 'GITHUB_EMAIL')]){
 
-                    dir('/var/lib/jenkins/workspace/artifact-jenkins-git'){
-                    sh '''
-                    sudo git config --global user.name "${USERNAME}"
-                    sudo git config --global user.email "${GITHUB_EMAIL}"
-                    sudo git config --global credential.helper 'cache --timeout=243600'
-                    sudo git add .
-                    sudo git commit -m "Uploading new artifact"
-                    sudo git tag -a v1.0.6 -m "Artifact 1.0.6"
-                    sudo git push https://${USERNAME}:${PASSWORD}@github.com/tefaardila/artifact-jenkins-git.git
-                    '''
-                    }
-                }
+        //             dir('/var/lib/jenkins/workspace/artifact-jenkins-git'){
+        //             sh '''
+        //             sudo git config --global user.name "${USERNAME}"
+        //             sudo git config --global user.email "${GITHUB_EMAIL}"
+        //             sudo git config --global credential.helper 'cache --timeout=243600'
+        //             sudo git add .
+        //             sudo git commit -m "Uploading new artifact"
+        //             sudo git tag -a v1.0.7 -m "Artifact 1.0.7"
+        //             sudo git push https://${USERNAME}:${PASSWORD}@github.com/tefaardila/artifact-jenkins-git.git
+        //             '''
+        //             }
+        //         }
                 
-            }
+        //     }
 
-        }
-        stage('Install AWS CLI'){
+        // }
+        stage('Connecting to ssh'){
             steps{
-                sh '''
-                curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-                unzip awscliv2.zip
-                sudo ./aws/install
-                '''
+                def exists3 = fileExists '/home/vagrant/public-proyect.pem'
+
+                if(exists3){
+                    ssh -i "public-proyect.pem" ubuntu@54.167.81.75
+                }
+                else {
+                    echo 'Cant Connet without pem key'
+                }
+            
             }
             
         }
