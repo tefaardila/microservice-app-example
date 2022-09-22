@@ -105,8 +105,9 @@ pipeline {
             steps{
 
                 sh '''
+                cd /home/vagrant
                 pwd
-                ssh -i -tt "/home/vagrant/public-proyect.pem" ubuntu@54.167.81.75
+                ssh -i -tt "public-proyect.pem" ubuntu@54.167.81.75
                 '''
             }
         }
