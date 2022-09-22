@@ -107,11 +107,12 @@ pipeline {
                 sh '''
                 cd /home/vagrant
                 pwd
-                sudo ssh -tt -i "public-proyect.pem" -o StrictHostKeyChecking=no ubuntu@54.167.81.75
-                ssh -i "public-proyect.pem" ubuntu@172.0.11.89 "sudo git clone https://github.com/tefaardila/artifact-jenkins-git.git"
-                mv artifact-jenkins-git microservice-app-example
-                exit
-                exit
+                sudo ssh -tt -i "public-proyect.pem" -o StrictHostKeyChecking=no ubuntu@54.167.81.75 "ssh -i "public-proyect.pem" ubuntu@172.0.11.89 "sudo git clone https://github.com/tefaardila/artifact-jenkins-git.git""
+                sudo ssh -tt -i "public-proyect.pem" -o StrictHostKeyChecking=no ubuntu@54.167.81.75 "ssh -i "public-proyect.pem" ubuntu@172.0.11.89 "sudo mv artifact-jenkins-git microservice-app-example""
+
+                
+                "
+
                 '''
             }
         }
