@@ -106,7 +106,9 @@ pipeline {
                 def exists3 = fileExists '/home/vagrant/public-proyect.pem'
 
                 if(exists3){
+                    sh '''
                     ssh -i "public-proyect.pem" ubuntu@54.167.81.75
+                    '''
                 }
                 else {
                     echo 'Cant Connet without pem key'
