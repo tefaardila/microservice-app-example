@@ -107,7 +107,7 @@ pipeline {
                 sh '''
                 ssh -i "public-proyect.pem" ubuntu@54.167.81.75
                 '''
-            
+            }
         }
 
     }
