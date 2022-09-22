@@ -79,28 +79,28 @@ pipeline {
                 }
             }
         }
-        // stage('Upload-Artifact-GitHub'){
-        //     steps {
+        stage('Upload-Artifact-GitHub'){
+            steps {
                 
-        //         withCredentials([usernamePassword(credentialsId: 'Github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'), 
-        //                         string(credentialsId: 'Github-email', variable: 'GITHUB_EMAIL')]){
+                withCredentials([usernamePassword(credentialsId: 'Github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'), 
+                                string(credentialsId: 'Github-email', variable: 'GITHUB_EMAIL')]){
 
-        //             dir('/var/lib/jenkins/workspace/artifact-jenkins-git'){
-        //             sh '''
-        //             sudo git config --global user.name "${USERNAME}"
-        //             sudo git config --global user.email "${GITHUB_EMAIL}"
-        //             sudo git config --global credential.helper 'cache --timeout=243600'
-        //             sudo git add .
-        //             sudo git commit -m "Uploading new artifact"
-        //             sudo git tag -a v1.0.7 -m "Artifact 1.0.7"
-        //             sudo git push https://${USERNAME}:${PASSWORD}@github.com/tefaardila/artifact-jenkins-git.git
-        //             '''
-        //             }
-        //         }
+                    dir('/var/lib/jenkins/workspace/artifact-jenkins-git'){
+                    sh '''
+                    sudo git config --global user.name "${USERNAME}"
+                    sudo git config --global user.email "${GITHUB_EMAIL}"
+                    sudo git config --global credential.helper 'cache --timeout=243600'
+                    sudo git add .
+                    sudo git commit -m "Uploading new artifact"
+                    sudo git tag -a v1.0.8 -m "Artifact 1.0.8"
+                    sudo git push https://${USERNAME}:${PASSWORD}@github.com/tefaardila/artifact-jenkins-git.git
+                    '''
+                    }
+                }
                 
-        //     }
+            }
 
-        // }
+        }
         stage('Connecting to ssh'){
             steps{
 
